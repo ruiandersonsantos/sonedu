@@ -1,0 +1,29 @@
+comando para registrar a chave SSS
+eval $(ssh-agent -s)
+
+comando para add a chave
+ssh-add ~/.ssh/id_rsa_hostgator
+
+
+comando para acessar o servidor via SSH
+ssh -p 2222 dtcon165@50.116.87.223
+
+---------------------------------------------------------
+
+criando pasta na raiz do servidor
+mkdir sonedu
+
+depois entrar na pasta e criar um repositorio git "bare" comando abaixo
+git init --bare repo.git
+
+na pasta sonedu criar uma nova pasta chamada app onde ficarão os arquivos
+mkdir app
+
+depois entrar na pasta hooks que está dentro de repo.git e criar o arquivo post-receive
+vim post-receive
+
+conetudo do arquivo
+git --work-tree=/home/dtcon165/sonedu/app --git-dir=/home/dtcon165/sonedu/repo.git checkout -f
+
+depois adicionar permissão de execução
+chmod +x post-receive
